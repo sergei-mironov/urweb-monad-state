@@ -11,7 +11,7 @@ sig
 
   val unState : st ::: Type -> a ::: Type -> state st a -> (st -> S.m (st*a))
 
-  val mrun : st ::: Type -> a ::: Type -> st -> state st a -> S.m (st*a)
+  val run : st ::: Type -> a ::: Type -> st -> state st a -> S.m (st*a)
 
   val get : st ::: Type -> {} -> state st st
 
@@ -29,7 +29,7 @@ struct
 
   fun unState [st] [a] ((State f): state st a) : (st -> S.m (st*a)) = f
 
-  fun mrun [st] [a] (s:st) (m:state st a) : S.m (st * a) = (unState m) s
+  fun run [st] [a] (s:st) (m:state st a) : S.m (st * a) = (unState m) s
 
   fun mreturn [st] [a] (r:a) : state st a = State (fn st => return (st,r))
 

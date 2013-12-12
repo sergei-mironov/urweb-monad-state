@@ -4,7 +4,7 @@ structure MO = State.Trans(struct con m = Basis.option end)
 
 fun testopt (b:bool) : transaction xbody =
   let
-    val o = MO.mrun {Val=0} (
+    val o = MO.run {Val=0} (
       s1 <- return 1;
       s2 <- return (s1 + 1);
       x <- MO.get {};
@@ -24,7 +24,7 @@ fun testopt (b:bool) : transaction xbody =
   end
 
 fun testtrans {} : transaction xbody =
-  r <- MT.mrun {Val=0} (
+  r <- MT.run {Val=0} (
       s1 <- return 1;
       s2 <- return (s1 + 1);
       x <- MT.get {};
