@@ -9,12 +9,13 @@ instance IsString File where fromString = file
 project = do
 
   u <- uwlib "lib.urp" $ do
-    ur (pair "state.ur")
+    ur (single "state.ur")
 
   apps <- forM ["Test1.ur", "Test2.ur", "Test3.ur", "Test4.ur"] $ \f -> do
     let src = (file $ "test"</> f)
     uwapp "-dbms sqlite" (src.="urp") $ do
       library u
+      ur (sys "option")
       ur (single src)
       debug
 

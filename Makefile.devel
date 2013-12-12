@@ -42,7 +42,7 @@ run: ./Makefile.devel ./test/Test4.exe
 	touch ./test/Test1.urp.in
 ./lib.urp: ./Makefile.devel ./lib.urp.in
 	cat ./lib.urp.in > ./lib.urp
-./lib.urp.in: ./Makefile.devel ./state.ur ./state.urs
+./lib.urp.in: ./Makefile.devel ./state.ur
 	touch ./lib.urp.in
 ./Cakegen: ./Cakefile.hs
 	cake3

@@ -42,7 +42,7 @@ run: ./test/Test4.exe
 	touch ./test/Test1.urp.in
 ./lib.urp: ./lib.urp.in
 	cat ./lib.urp.in > ./lib.urp
-./lib.urp.in: ./state.ur ./state.urs
+./lib.urp.in: ./state.ur
 	touch ./lib.urp.in
 $(call GUARD,URVERSION):
 	rm -f .cake3/GUARD_URVERSION_*
