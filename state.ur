@@ -17,6 +17,8 @@ sig
 
   val set : st ::: Type -> st -> state st {}
 
+  val modify : st ::: Type -> (st -> st) -> state st {}
+
   val lift : st ::: Type -> a ::: Type -> S.m a -> state st a
 
   val monad_state : st ::: Type -> monad (state st)
@@ -42,6 +44,8 @@ struct
   fun get [st] {} : state st st = State (fn s => return (s,s))
 
   fun set [st] (s:st) : state st {} = State (fn _ => return (s,{}))
+
+  fun modify [st] (f:st -> st) : state st {} = State (fn s => return (f s,{}))
 
   val monad_state = fn [st ::: Type] => mkMonad { Return = @@mreturn [st], Bind = @@mbind [st] }
 

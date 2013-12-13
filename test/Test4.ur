@@ -13,6 +13,7 @@ fun testopt (b:bool) : transaction xbody =
         case b of
             True => None
           | False => Some {});
+      MO.modify (fn v => {Val=v.Val + 1});
       return (s2+2)
       )
   in
